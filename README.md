@@ -14,10 +14,10 @@ The melting of ice sheets and glaciers is one of the main contributors to global
   year={2022},
   volume={15},
   number={},
-
-**Code description**: Please see Readme.pdf
   pages={1712-1723},
   doi={10.1109/JSTARS.2022.3148033},
   ISSN={2151-1535}
 }
 ```
+
+**Code description**: Please see Readme.pdf

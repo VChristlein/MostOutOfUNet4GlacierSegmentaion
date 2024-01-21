@@ -1,0 +1,82 @@
+# This file helps to set the hyper parameters of for the network
+# All hyper parameters are sent as list so that multiple run is possible.
+
+
+# This file helps to set the hyper parameters of for the network
+# All hyper parameters are sent as list so that multiple run is possible.
+
+
+
+
+#The model Architecture and data dataset details used for this taining is explained below
+
+#There is a total of 244
+
+    #  31 is of size (4581 X 3370)
+    #  43 is of size (2291 X 1885)
+    #  43 is of size (2291 X 1885)
+    #  72 is of size (1146 X 942)
+    #  91 is of size (1145 X 943)
+    #   1 is of size (1145 X 864)
+    #   1 is of size (1145 X 839)
+    #   1 is of size (1145 X 829)
+    #   1 is of size (1145 X 694)
+    #   1 is of size (1145 X 654)
+    #   1 is of size (1145 X 649)
+    #   1 is of size (1145 X 629)
+    #   1 is of size (1145 X 594)
+    #  11 is of size ( 458 X 377)
+
+# Test/Train/Validation split
+
+    # Test images : 50 (choosen random with random_state =  1)
+    # Train images : 144 (cheosen random using train_test_split with random_state=1 and test_size=0.2)
+    # Validation Images: 50
+    
+# Data Augumentation: 144*8 = 1152 [rotate of 4 and flip of 2]
+
+# preprocessing : Bilateral Filter(10, 95, 75), CLAHE(clipLimit=5.0, tileGridSize=(5, 5))
+
+# stopping criteria : Early callBack if there is no decrease in validation loss for 32 iterations.
+# initialization : default random initialization by keras
+
+# Learning rate : Cyclic learning rate
+
+# Major change with this Simulation : Dialated res block for TransferLearning
+
+
+epochs: [256]
+batchSize: [16]
+patchSize: [256]
+
+# All possible keras optimizers as string
+optimizer: ["Adam"]
+
+# possible optionce "combined", "dice", "bce"
+loss: ["combined"]
+
+# All possible keras metrics as string
+metrics: ["accuracy"]
+
+# possible options "unet",   "unet_Enze19_2", "dilated_convo", "dilated_convo2", "dilated_convo3", "dilated_convo4", "resBlock", "dilatedResBlock", "dilatedResBlockLayerNorm", "dilatedResBlockWeightNorm", "dilatedResBlockInstanceNorm", "dilatedResBlockGroupNorm", "dilatedResBlockWithDropout", "dilatedResBlockWithBNandDropout", "unetPlusPlus", "FCN"
+
+# refer to the documentation in the code for details about each model.
+unetType: ["unet_Enze19_2"]
+
+inputSize: [!!python/tuple [256,256,1]]
+loss_weight: [[1.0,0.0]]
+LrType: "circular"
+
+dilationRate: [!!python/tuple [2,2]]
+dropout: 0.1
+
+# Path for various input outputs
+
+rawImage: '../Dataset3/'
+
+#Inputfolder should be the folder in which train, validation and test paths are present.
+inputFolder: 'data3_final_256'
+trainPath: 'data3_final_256/train/'
+valPath: 'data3_final_256/val/'
+testPath: 'data3_final_256/test/'
+outputPath: 'output/data3_initial/'
